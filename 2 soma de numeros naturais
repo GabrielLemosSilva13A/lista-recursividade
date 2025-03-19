@@ -1,0 +1,25 @@
+#include <stdio.h>
+int soma_naturais(int n) {
+    // Caso base: quando n for 0, a soma é 0
+    if (n == 0) {
+        return 0;
+    }
+    
+    return n + soma_naturais(n - 1);
+}
+int main() {
+    int n; 
+    printf("Digite um número natural: ");
+    scanf("%d", &n);
+
+    
+    if (n < 0) {
+        printf("Por favor, digite um número natural (não negativo).\n");
+    } else {
+        
+        int resultado = soma_naturais(n);
+        printf("A soma dos primeiros %d números naturais é: %d\n", n, resultado);
+    }
+
+    return 0;
+}
