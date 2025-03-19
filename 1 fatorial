@@ -1,0 +1,14 @@
+unsigned lon long fatorial(int n) {
+if (n == 0 || n == 1) {
+return 1;
+}
+int main() {
+int num;
+printf("digite um numero inteiro não  negativo:");
+scanf("%d",&num);
+if (num<0) {
+printf("Erro: o numero deve ser não negativo\n");
+} else{
+printf("fatorial de %d e %llu\n",num,fatorial(num));
+}
+return 0;
