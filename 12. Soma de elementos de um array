@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int soma_array_recursiva(int arr[], int tamanho, int indice) {
+    if (indice == tamanho) {
+        return 0; 
+    } else {
+        return arr[indice] + soma_array_recursiva(arr, tamanho, indice + 1);
+    }
+}
+
+int soma_array(int arr[], int tamanho) {
+    return soma_array_recursiva(arr, tamanho, 0); 
+}
+
+int main() {
+    int meu_array[] = {1, 2, 3, 4};
+    int tamanho = sizeof(meu_array) / sizeof(meu_array[0]); 
+    int soma = soma_array(meu_array, tamanho);
+    printf("A soma dos elementos do array é: %d\n", soma);
+    return 0;
+}
