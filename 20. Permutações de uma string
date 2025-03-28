@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+void trocar_caracteres(char *a, char *b) {
+    char temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void permutar_string(char *str, int inicio, int fim) {
+    if (inicio == fim) {
+        printf("%s\n", str); // Caso base: imprime a permutação
+        return;
+    }
+
+    for (int i = inicio; i <= fim; i++) {
+        trocar_caracteres((str + inicio), (str + i));
+        permutar_string(str, inicio + 1, fim);
+        trocar_caracteres((str + inicio), (str + i)); // Restaura a string original
+    }
+}
+
+int main() {
+    char minha_string[] = "abc";
+    printf("Permutações de '%s':\n", minha_string);
+    permutar_string(minha_string, 0, strlen(minha_string) - 1);
+    return 0;
+}
