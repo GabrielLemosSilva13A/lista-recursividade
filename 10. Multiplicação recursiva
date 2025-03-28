@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int multiplicar(int a, int b) {
+    if (b == 0) {
+        return 0; 
+    } else {
+        return a + multiplicar(a, b - 1);
+    }
+}
+
+int main() {
+    int num1 = 4;
+    int num2 = 5;
+    printf("%d multiplicado por %d é: %d\n", num1, num2, multiplicar(num1, num2));
+    return 0;
+}
