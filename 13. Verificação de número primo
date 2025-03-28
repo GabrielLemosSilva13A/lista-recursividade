@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+
+bool eh_primo_recursivo(int numero, int divisor) {
+    if (divisor * divisor > numero) {
+        return true;
+    }
+
+    if (numero % divisor == 0) {
+        return false;
+    }
+
+    return eh_primo_recursivo(numero, divisor + 1);
+}
+
+bool eh_primo(int numero) {
+    if (numero <= 1) {
+        return false;
+    }
+
+    if (numero == 2) {
+        return true;
+    }
+
+    if (numero % 2 == 0) {
+        return false;
+    }
+
+    return eh_primo_recursivo(numero, 3);
+}
+
+int main() {
+    int num1 = 7;
+    int num2 = 9;
+
+    printf("%d é primo? %d\n", num1, eh_primo(num1));
+    printf("%d é primo? %d\n", num2, eh_primo(num2));
+
+    return 0;
+}
