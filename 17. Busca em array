@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+bool busca_recursiva(int arr[], int tamanho, int elemento) {
+    if (tamanho == 0) {
+        return false; 
+    }
+
+    if (arr[tamanho - 1] == elemento) {
+        return true; 
+    }
+return busca_recursiva(arr, tamanho - 1, elemento);
+}
+
+int main() {
+    int meu_array[] = {2, 4, 6, 8};
+    int tamanho = sizeof(meu_array) / sizeof(meu_array[0]);
+
+    int elemento1 = 6;
+    int elemento2 = 5;
+
+    printf("%d está presente no array? %d\n", elemento1, busca_recursiva(meu_array, tamanho, elemento1));
+    printf("%d está presente no array? %d\n", elemento2, busca_recursiva(meu_array, tamanho, elemento2));
+
+    return 0;
+}
