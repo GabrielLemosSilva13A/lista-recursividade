@@ -1,1 +1,22 @@
+include <stdio.h>
 
+int potencia_otimizada(int x, int n) {
+    if (n == 0) {
+        return 1;
+    }
+
+    int temp = potencia_otimizada(x, n / 2);
+
+    if (n % 2 == 0) {
+        return temp * temp;
+    } else {
+        return x * temp * temp;
+    }
+}
+
+int main() {
+    int x = 2;
+    int n = 5;
+    printf("%d elevado a %d é: %d\n", x, n, potencia_otimizada(x, n));
+    return 0;
+}
