@@ -2,8 +2,8 @@
 
 void contagem_regressiva(int n) {
     if (n >= 0) {
-        printf("%d ", n); // Imprime o número atual
-        contagem_regressiva(n - 1); // Chama a função recursivamente com n-1
+        printf("%d ", n); 
+        contagem_regressiva(n - 1); 
     }
 }
 
@@ -11,6 +11,6 @@ int main() {
     int numero = 3;
     printf("Contagem regressiva de %d até 0: ", numero);
     contagem_regressiva(numero);
-    printf("\n"); // Adiciona uma nova linha para melhor formatação
+    printf("\n"); 
     return 0;
 }
