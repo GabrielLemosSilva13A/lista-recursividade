@@ -1,1 +1,16 @@
+#include <stdio.h>
 
+int comprimento_recursivo(char *str) {
+    if (*str == '\0') {
+        return 0; 
+    } else {
+        return 1 + comprimento_recursivo(str + 1); 
+    }
+}
+
+int main() {
+    char minha_string[] = "recursivo";
+    int comprimento = comprimento_recursivo(minha_string);
+    printf("O comprimento da string é: %d\n", comprimento);
+    return 0;
+}
