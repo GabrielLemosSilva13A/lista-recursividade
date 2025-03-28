@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+void imprimir_impares_recursivo(int n, int atual) {
+    if (atual > n) {
+        return; 
+    }
+
+    printf("%d ", atual); 
+    imprimir_impares_recursivo(n, atual + 2); 
+}
+
+void imprimir_impares(int n) {
+    if(n < 1) return;
+    imprimir_impares_recursivo(n, 1); 
+    printf("\n"); 
+}
+
+int main() {
+    int numero = 7;
+    printf("Números ímpares de 1 até %d: ", numero);
+    imprimir_impares(numero);
+    return 0;
+}
