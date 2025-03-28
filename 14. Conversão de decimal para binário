@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+char* decimal_para_binario_string(int decimal) {
+    if (decimal == 0) {
+        char* resultado = (char*)malloc(2 * sizeof(char));
+        resultado[0] = '0';
+        resultado[1] = '\0';
+        return resultado;
+    }
+
+    char* resultado = decimal_para_binario_string(decimal / 2);
+    int tamanho = strlen(resultado);
+    resultado = (char*)realloc(resultado, (tamanho + 2) * sizeof(char));
+    resultado[tamanho] = (decimal % 2) + '0';
+    resultado[tamanho + 1] = '\0';
+    return resultado;
+}
+
+int main() {
+    int numero_decimal = 10;
+    char* binario_string = decimal_para_binario_string(numero_decimal);
+    printf("O binário de %d é: %s\n", numero_decimal, binario_string);
+    free(binario_string); 
+    return 0;
+}
