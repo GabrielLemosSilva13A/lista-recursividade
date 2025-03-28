@@ -4,14 +4,14 @@
 
 bool eh_palindromo_recursivo(char *str, int inicio, int fim) {
     if (inicio >= fim) {
-        return true; // Caso base: string vazia ou de um caractere é palíndromo
+        return true; 
     }
 
     if (str[inicio] != str[fim]) {
-        return false; // Caracteres diferentes, não é palíndromo
+        return false; 
     }
 
-    // Chama a função recursivamente para a substring interna
+
     return eh_palindromo_recursivo(str, inicio + 1, fim - 1);
 }
 
