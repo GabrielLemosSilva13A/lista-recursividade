@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+void imprimir_subconjunto(int arr[], int tamanho, int subconjunto[], int tamanho_subconjunto) {
+    printf("{");
+    for (int i = 0; i < tamanho_subconjunto; i++) {
+        printf("%d", subconjunto[i]);
+        if (i < tamanho_subconjunto - 1) {
+            printf(", ");
+        }
+    }
+    printf("}");
+}
+
+void subconjuntos_recursivos(int arr[], int n, int subconjunto[], int tamanho_subconjunto, int indice) {
+    if (indice == n) {
+        imprimir_subconjunto(arr, n, subconjunto, tamanho_subconjunto);
+        printf(", ");
+        return;
+    }
+
+    subconjunto[tamanho_subconjunto] = arr[indice];
+    subconjuntos_recursivos(arr, n, subconjunto, tamanho_subconjunto + 1, indice + 1);
+    subconjuntos_recursivos(arr, n, subconjunto, tamanho_subconjunto, indice + 1);
+}
+
+void subconjuntos(int arr[], int n) {
+    int subconjunto[n];
+    subconjuntos_recursivos(arr, n, subconjunto, 0, 0);
+}
+
+int main() {
+    int meu_array[] = {1, 2};
+    printf("Subconjuntos: ");
+    subconjuntos(meu_array, 2);
+    printf("\n");
+    return 0;
+}
