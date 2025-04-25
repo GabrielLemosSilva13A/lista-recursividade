@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX 100
+
+// Função recursiva para gerar os parênteses
+void gerarParenteses(int n, int abertos, int fechados, char str[], int pos) {
+    // Se o número de abertos e fechados chegou a n, temos uma combinação válida
+    if (abertos == n && fechados == n) {
+        str[pos] = '\0';  // finaliza a string
+        printf("%s\n", str);
+        return;
+    }
+
+    
+    if (abertos < n) {
+        str[pos] = '(';
+        gerarParenteses(n, abertos + 1, fechados, str, pos + 1);
+    }
+
+    
+    if (fechados < abertos) {
+        str[pos] = ')';
+        gerarParenteses(n, abertos, fechados + 1, str, pos + 1);
+    }
+}
+
+int main() {
+    int n = 3;  // número de pares de parênteses
+    char str[MAX];
+
+    printf("Combinações válidas de %d pares de parênteses:\n", n);
+    gerarParenteses(n, 0, 0, str, 0);
+
+    return 0;
+}
