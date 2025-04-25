@@ -1,0 +1,80 @@
+#include <stdio.h>
+
+#define MAX 100
+
+int labirinto[MAX][MAX];
+int caminho[MAX][MAX];
+int n, m;
+
+
+int dx[] = {1, 0, -1, 0};
+int dy[] = {0, 1, 0, -1};
+
+
+int podeMover(int x, int y) {
+    return (x >= 0 && x < n && y >= 0 && y < m &&
+            labirinto[x][y] == 0 && caminho[x][y] == 0);
+}
+
+
+int resolverLabirinto(int x, int y) {
+    if (x == n - 1 && y == m - 1) {
+        caminho[x][y] = 1; // destino alcançado
+        return 1;
+    }
+
+    if (podeMover(x, y)) {
+        caminho[x][y] = 1; // marca como parte do caminho
+
+        for (int dir = 0; dir < 4; dir++) {
+            int novoX = x + dx[dir];
+            int novoY = y + dy[dir];
+
+            if (resolverLabirinto(novoX, novoY))
+                return 1;
+        }
+
+        caminho[x][y] = 0; // backtrack
+    }
+
+    return 0;
+}
+
+
+void imprimirCaminho() {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (caminho[i][j])
+                printf("* ");
+            else
+                printf("%d ", labirinto[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    // Exemplo do labirinto fornecido
+    int exemplo[3][4] = {
+        {0, 1, 0, 0},
+        {0, 0, 0, 1},
+        {1, 0, 1, 0}
+    };
+
+    n = 3;
+    m = 4;
+
+    
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            labirinto[i][j] = exemplo[i][j];
+
+    if (resolverLabirinto(0, 0)) {
+        printf("Caminho encontrado:\n");
+        imprimirCaminho();
+    } else {
+        printf("Nenhum caminho encontrado.\n");
+    }
+
+    return 0;
+}
