@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+#define MAX 20  // Tamanho máximo permitido do tabuleiro
+
+int tabuleiro[MAX];
+int n;
+int solucao = 0;
+
+
+bool podeColocar(int linha, int col) {
+    for (int i = 0; i < linha; i++) {
+        if (tabuleiro[i] == col || 
+            abs(tabuleiro[i] - col) == abs(i - linha)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+void imprimirTabuleiro() {
+    printf("Solução %d:\n", ++solucao);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (tabuleiro[i] == j)
+                printf("Q ");
+            else
+                printf(". ");
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+
+void resolverNQueens(int linha) {
+    if (linha == n) {
+        imprimirTabuleiro();
+        return;
+    }
+
+    for (int col = 0; col < n; col++) {
+        if (podeColocar(linha, col)) {
+            tabuleiro[linha] = col;
+            resolverNQueens(linha + 1);
+            // Backtracking automático: substitui na próxima iteração
+        }
+    }
+}
+
+int main() {
+    printf("Digite o valor de N (N <= %d): ", MAX);
+    scanf("%d", &n);
+
+    if (n < 1 || n > MAX) {
+        printf("Valor inválido de N!\n");
+        return 1;
+    }
+
+    resolverNQueens(0);
+
+    if (solucao == 0)
+        printf("Nenhuma solução encontrada.\n");
+
+    return 0;
+}
