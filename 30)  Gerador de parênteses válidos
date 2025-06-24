@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+
+void gerarCombinacoes(int n, int abertos, int fechados, char *str, int pos) {
+    if (fechados == n) {
+        str[pos] = '\0';
+        printf("%s\n", str);
+        return;
+    }
+
+    if (abertos < n) {
+        str[pos] = '(';
+        gerarCombinacoes(n, abertos + 1, fechados, str, pos + 1);
+    }
+
+    if (fechados < abertos) {
+        str[pos] = ')';
+        gerarCombinacoes(n, abertos, fechados + 1, str, pos + 1);
+    }
+}
+
+int main() {
+    int n = 3;  // Altere aqui o número de pares de parênteses
+    char str[2 * n + 1];  // Cada par tem 2 caracteres, mais o '\0'
+    gerarCombinacoes(n, 0, 0, str, 0);
+    return 0;
+}
